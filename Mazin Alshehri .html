@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mazin Alshehri | Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #020204; /* Ultra Dark */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-secondary: #a1a1aa;
+            
+            /* Neon Accents - Consistent Theme */
+            --accent-primary: #7c3aed; /* Electric Violet */
+            --accent-secondary: #0ea5e9; /* Cyan */
+            --gradient-text: linear-gradient(135deg, #c4b5fd 0%, #7c3aed 50%, #0ea5e9 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Custom Scrollbar --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+        /* --- Layout --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 120px 0; }
+
+        /* --- Header / Nav --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 0;
+            background: rgba(2, 2, 4, 0.85); backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Updated Logo Style */
+        .logo-text { 
+            font-weight: 800; 
+            font-size: 1.2rem; 
+            color: #fff; 
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        .linkedin-icon { font-size: 1.2rem; color: #fff; transition: 0.3s; }
+        .linkedin-icon:hover { color: var(--accent-secondary); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; background: radial-gradient(circle at center, rgba(124, 58, 237, 0.15) 0%, rgba(2, 2, 4, 1) 70%);
+        }
+
+        .hero-title {
+            font-size: 6rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+            background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: -3px; text-shadow: 0 20px 80px rgba(124, 58, 237, 0.25);
+        }
+
+        .hero-subtitle {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.2rem; color: var(--accent-secondary);
+            background: rgba(14, 165, 233, 0.1); padding: 8px 20px; border-radius: 30px;
+            display: inline-block; margin-bottom: 30px; border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .hero p { max-width: 600px; margin: 0 auto 40px; color: var(--text-secondary); font-size: 1.1rem; }
+
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+        /* --- SECTIONS GENERAL --- */
+        .section-title { font-size: 2.5rem; margin-bottom: 60px; text-align: center; font-weight: 800; }
+        .section-title span { color: var(--accent-primary); }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        .skill-card {
+            background: var(--glass-bg); border: 1px solid var(--border-color);
+            padding: 40px 20px; border-radius: 20px; text-align: center;
+            transition: 0.4s ease; position: relative; overflow: hidden;
+        }
+        .skill-card:hover {
+            transform: translateY(-10px); border-color: var(--accent-primary);
+            background: rgba(124, 58, 237, 0.05); box-shadow: 0 10px 40px -10px rgba(124, 58, 237, 0.3);
+        }
+        .skill-card i {
+            font-size: 4rem; margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff, #7c3aed);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .skill-name { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; color: #fff; }
+
+        /* --- TIMELINE (About) --- */
+        .timeline-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .timeline-block h3 { font-size: 1.8rem; margin-bottom: 30px; color: var(--text-main); display: flex; align-items: center; gap: 15px; }
+        
+        .card {
+            background: #0a0a0c; border-left: 3px solid var(--accent-secondary);
+            padding: 25px; margin-bottom: 25px; border-radius: 0 15px 15px 0; position: relative;
+        }
+        .card h4 { font-size: 1.3rem; color: #fff; margin-bottom: 5px; }
+        .card-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--accent-secondary); margin-bottom: 10px; display: block; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        /* --- HONORS SECTION (Distinctive but Harmonious) --- */
+        .honors-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .honor-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border: 1px solid var(--border-color);
+            padding: 35px; border-radius: 20px; transition: 0.3s;
+            position: relative;
+        }
+        .honor-card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--accent-secondary); 
+            box-shadow: 0 5px 30px rgba(14, 165, 233, 0.1);
+        }
+        .honor-icon { 
+            font-size: 2rem; 
+            color: var(--accent-secondary); /* Cyan for distinction */
+            margin-bottom: 20px; 
+        }
+        .honor-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: #fff; }
+
+        /* --- PROJECTS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+        .project-card {
+            background: var(--glass-bg); border: 1px solid var(--border-color);
+            border-radius: 20px; padding: 35px; transition: 0.3s;
+        }
+        .project-card:hover { border-color: var(--accent-secondary); }
+        .project-icon { font-size: 2.5rem; color: var(--accent-secondary); margin-bottom: 20px; }
+        .project-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* --- FOOTER --- */
+        .contact-section { text-align: center; background: linear-gradient(to top, rgba(124, 58, 237, 0.1), transparent); }
+        .contact-box { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        
+        .contact-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: #fff; color: #000; padding: 15px 40px;
+            border-radius: 50px; font-weight: 700; text-decoration: none;
+            transition: 0.3s;
+        }
+        .contact-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255,255,255,0.3); }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; }
+            .timeline-container { grid-template-columns: 1fr; gap: 40px; }
+            .nav-links { display: none; }
+            .skill-card i { font-size: 3rem; }
+            .hero-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-flex">
+            <div class="logo-text">Mazin Alshehri</div>
+            <div class="nav-links">
+                <a href="#skills">Skills</a>
+                <a href="#about">About</a>
+                <a href="#honors">Honors</a> <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
+                <a href="https://www.linkedin.com/in/mazin-alshehri-9656153a4" target="_blank" class="linkedin-icon">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-subtitle">Network & Security Student</div>
+            <h1 class="hero-title">Mazin Alshehri</h1>
+            <p>
+                Focused on Ethical Hacking, Network Defense, and Automation.
+                Building secure digital infrastructures for the future.
+            </p>
+            <div class="hero-btns">
+                <a href="#contact" class="contact-btn" style="background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+                    Contact Me
+                </a>
+                <a href="https://www.linkedin.com/in/mazin-alshehri-9656153a4" target="_blank" class="contact-btn" style="background: var(--accent-primary); border: none; color: white;">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical <span>Arsenal</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-network-wired"></i>
+                    <div class="skill-name">Cisco Packet Tracer</div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <div class="skill-name">Kali Linux</div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-terminal"></i>
+                    <div class="skill-name">PowerShell</div>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-java"></i>
+                    <div class="skill-name">Java (OOP)</div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-lock"></i>
+                    <div class="skill-name">Penetration Testing</div>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <div class="skill-name">VLANs & Subnetting</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="timeline-container">
+                
+                <div class="timeline-block">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    
+                    <div class="card">
+                        <h4>Diploma in Computer Security & Networks</h4>
+                        <span class="card-meta">2024 - Present (2026) | IAU</span>
+                        <p>Imam Abdulrahman Bin Faisal University. Specializing in advanced network security protocols.</p>
+                    </div>
+
+                    <div class="card">
+                        <h4>High School Diploma</h4>
+                        <span class="card-meta">2022 - 2024 | CS Track</span>
+                        <p>Dhahran-Imam Saud Al-Kabir. Computer Science & Engineering Track.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-block">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+
+                    <div class="card">
+                        <h4>Sales Associate</h4>
+                        <span class="card-meta">2017 - 2018 | Al Raed Perfumes</span>
+                        <p>Managed inventory control and developed customer communication skills.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="honors">
+        <div class="container">
+            <h2 class="section-title">Honors & <span>Programs</span></h2>
+            <div class="honors-grid">
+                <div class="honor-card">
+                    <div class="honor-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Mawhiba Gifted Program</h3>
+                    <p style="color: var(--text-secondary);">Selected for the National Gifted Program by King Abdulaziz & his Companions Foundation for Giftedness and Creativity.</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon"><i class="fas fa-medal"></i></div>
+                    <h3>National Olympiad (Ibdaa)</h3>
+                    <p style="color: var(--text-secondary);">Two-time participant in the national science & engineering competition. Honored for participation in middle school.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Selected <span>Projects</span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-sitemap"></i></div>
+                    <h3>Network Config Lab</h3>
+                    <p style="color:var(--text-secondary);">Configured routers and switches using Packet Tracer with advanced Subnetting & VLAN implementation.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-user-secret"></i></div>
+                    <h3>Security Analysis</h3>
+                    <p style="color:var(--text-secondary);">Utilized Kali Linux tools for vulnerability testing and security auditing on target systems.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-code"></i></div>
+                    <h3>PowerShell Automation</h3>
+                    <p style="color:var(--text-secondary);">Developed scripts to manage system tasks and automate administrative workflows efficiently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="contact-section">
+        <div class="container">
+            <h2 style="font-size: 3rem; font-weight: 900;">Let's Work Together</h2>
+            <p style="margin-top: 20px; color: var(--text-secondary);">Ready to secure the next generation of networks?</p>
+            
+            <div class="contact-box">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mazinalshehrioffcial@gmail.com" target="_blank" class="contact-btn">
+                    <i class="fas fa-envelope"></i> Email Me
+                </a>
+                
+                <a href="https://www.linkedin.com/in/mazin-alshehri-9656153a4" target="_blank" class="contact-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                
+                <a href="tel:+966552456067" class="contact-btn">
+                    <i class="fas fa-phone"></i> Call Me
+                </a>
+            </div>
+            
+            <br>
+            <div style="margin-top: 50px; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #555;">
+                &copy; 2026 Mazin Alshehri. All Rights Reserved.<br>
+                Based in Dhahran, Saudi Arabia
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
